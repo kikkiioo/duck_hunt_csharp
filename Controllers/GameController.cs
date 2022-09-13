@@ -32,9 +32,21 @@ namespace duck_hunt_csharp.Controllers
                 }
                 if(animation_duration >= 0.5)
                 {
-                    dog.State = EnumDogState.NOTHING;
+                    dog.State = EnumDogState.SNIFF1;
                 }
                 
+            }
+            if(dog.State == EnumDogState.SNIFF1)
+            {
+                dog.Frame += 8 * delta;
+                if (dog.Frame > 1)
+                {
+                    dog.Frame = 0;
+                }
+                if (animation_duration >= 0.5)
+                {
+                    dog.State = EnumDogState.NOTHING;
+                }
             }
         }
     }
