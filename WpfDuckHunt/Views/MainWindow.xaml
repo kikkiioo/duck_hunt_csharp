@@ -1,0 +1,19 @@
+﻿<Window x:Class="WpfDuckHunt.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDuckHunt" xmlns:views="clr-namespace:WpfDuckHunt.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <Button x:Name="uiButtonNewGame" Click="uiButtonNewGame_Click">New Game</Button>
+        </StackPanel>
+        <views:MainGame Grid.Row="1" />
+    </Grid>
+</Window>
