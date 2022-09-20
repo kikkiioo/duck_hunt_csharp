@@ -9,8 +9,8 @@ namespace duck_hunt_csharp.Models
     public class Dog : Actor
     {
         public EnumDogState State = EnumDogState.NOTHING;
-        public Double Frame { get; set; }
-        public Dog(Double x, Double y,EnumDogState state, Double frame){
+        public double Frame { get; set; }
+        public Dog(double x, double y,EnumDogState state, double frame){
             this.xPos = x;
             this.yPos = y;
             this.State = state;

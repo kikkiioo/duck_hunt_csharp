@@ -7,20 +7,19 @@ using System.Collections.Generic;
 
 namespace duck_hunt_csharp
 {
-    public class Game1 : Game
+    public class WindowGame : Microsoft.Xna.Framework.Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
         Texture2D background;
         Texture2D sniff1, sniff2, sniff3, sniff4, sniff5, sniff6;
-        Dog dog = new Dog(x: 0, y: 320, state: EnumDogState.SNIFF, frame: 0);
         Dictionary<EnumDogState,List<Texture2D>> dictionary = new Dictionary<EnumDogState, List<Texture2D>>();
         List<Texture2D> sniff = new List<Texture2D>();
         public float animation_duration = 0 ;
         public float delta = 0;
 
-        public Game1()
+        public WindowGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -55,19 +54,16 @@ namespace duck_hunt_csharp
         protected override void Update(GameTime gameTime)
         {
 
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+          
             delta = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            GameController.updateActors(dog,delta,animation_duration);
-            GameController.updateControllers(dog,delta);
+            GameController.updateActors(delta);
+            GameController.updateControllers(delta);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
-
+           
             _spriteBatch.Begin();
             _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
          
