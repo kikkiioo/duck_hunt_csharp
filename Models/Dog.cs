@@ -10,11 +10,14 @@ namespace duck_hunt_csharp.Models
     {
         public EnumDogState State = EnumDogState.NOTHING;
         public double Frame { get; set; }
-        public Dog(double x, double y,EnumDogState state, double frame){
+        public float animation_duration { get; set; }
+
+        public Dog(double x, double y,EnumDogState state, double frame, float animation_duration){
             this.xPos = x;
             this.yPos = y;
             this.State = state;
             this.Frame = frame;
+            this.animation_duration = animation_duration;
             }
     }
 }
