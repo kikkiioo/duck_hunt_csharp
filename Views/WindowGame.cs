@@ -16,16 +16,16 @@ namespace duck_hunt_csharp
         Texture2D sniff1, sniff2, sniff3, sniff4, sniff5, sniff6;
         Dictionary<EnumDogState,List<Texture2D>> dictionary = new Dictionary<EnumDogState, List<Texture2D>>();
         List<Texture2D> sniff = new List<Texture2D>();
-        public float animation_duration = 0 ;
+        
         public float delta = 0;
 
         public WindowGame()
         {
+            GameController.newGame();
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-
         protected override void Initialize()
         {
             background = Content.Load<Texture2D>("background");
@@ -66,9 +66,17 @@ namespace duck_hunt_csharp
            
             _spriteBatch.Begin();
             _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-         
-            _spriteBatch.Draw(dictionary[dog.State][System.Convert.ToInt32(dog.Frame)], new Vector2((float)dog.xPos, (float)dog.yPos), Color.White);
-            
+            for (int i = 0; i < GameController.game.Actors.Count; i++)
+            {
+                if (GameController.game.Actors[i].GetType() == typeof(Dog))
+                {
+                    Dog dog = (Dog)GameController.game.Actors[i]; // nezinu kā šo apiet lai nebūtu jauns objekts jātaisa ? 
+
+                    _spriteBatch.Draw(dictionary[dog.State][(int)(dog.Frame)], new Vector2((float)dog.xPos, (float)dog.yPos), Color.White);
+                    
+                }
+
+            }
             _spriteBatch.End();
             base.Draw(gameTime);
         }
