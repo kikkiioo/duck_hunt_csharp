@@ -8,9 +8,10 @@ namespace duck_hunt_csharp.Models
 {
     public class Actor
     {
-        public Double xPos { get; set; }
-        public Double yPos { get; set; }
-        public Actor(Double x, Double y)
+        public double xPos { get; set; }
+        public double yPos { get; set; }
+        
+        public Actor(double x, double y)
         {
             this.xPos = x;
             this.yPos = y;
