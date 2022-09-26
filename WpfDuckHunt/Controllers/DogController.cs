@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using duck_hunt_csharp.Models;
+using WpfDuckHunt.Models;
 
-namespace duck_hunt_csharp.Controllers
+namespace WpfDuckHunt.Controllers
 {
     public class DogController
     {

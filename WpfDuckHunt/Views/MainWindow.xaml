@@ -5,15 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDuckHunt" xmlns:views="clr-namespace:WpfDuckHunt.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
+        Title="Duck Hunt" Height="550" Width="500">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal">
-            <Button x:Name="uiButtonNewGame" Click="uiButtonNewGame_Click">New Game</Button>
-        </StackPanel>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="..\graphics\background.png"
+                AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>
+        <StackPanel Orientation="Horizontal"/>
         <views:MainGame Grid.Row="1" />
+        <Button Content="Save Game" Margin="425,0,10,454" Grid.Row="1"/>
+        <Button x:Name="uiButtonNewGame" Click="uiButtonNewGame_Click" Content="New Game" Margin="425,51,10,403" Grid.Row="1"/>
+
     </Grid>
 </Window>
