@@ -7345,11 +7345,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\source\\repos\\duck_hunt_csharp\\WpfDuckHunt\\WpfDuckHunt.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\monogame_test\\duck_hunt_csharp\\WpfDuckHunt\\WpfDuckHunt.csproj",
       "projectName": "WpfDuckHunt",
-      "projectPath": "C:\\Users\\User\\source\\repos\\duck_hunt_csharp\\WpfDuckHunt\\WpfDuckHunt.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\monogame_test\\duck_hunt_csharp\\WpfDuckHunt\\WpfDuckHunt.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\source\\repos\\duck_hunt_csharp\\WpfDuckHunt\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\monogame_test\\duck_hunt_csharp\\WpfDuckHunt\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

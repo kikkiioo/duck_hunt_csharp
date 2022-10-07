@@ -12,12 +12,12 @@ namespace WpfDuckHunt.Models
         public double Frame { get; set; }
         public float animation_duration { get; set; }
 
-        public Dog(double x, double y,EnumDogState state, double frame, float animation_duration){
+        public Dog(double x, double y,EnumDogState state, double frame, float Animation_duration){
             this.xPos = x;
             this.yPos = y;
             this.State = state;
             this.Frame = frame;
-            this.animation_duration = animation_duration;
+            this.animation_duration = Animation_duration;
             }
     }
 }

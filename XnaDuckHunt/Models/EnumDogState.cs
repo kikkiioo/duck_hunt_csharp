@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace duck_hunt_csharp.Models
+namespace WpfDuckHunt.Models
 {
     public enum EnumDogState
     {
