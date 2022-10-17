@@ -30,7 +30,7 @@ namespace WpfDuckHunt.Views
         private void uiButtonNewGame_Click(object sender, RoutedEventArgs e)
         {
             GameController.newGame();
-            uiButtonNewGame.Content = GameController.game.dogActors[0].animation_duration;
+            
         }
 
         private void uiButtonPauseGame_Click(object sender, RoutedEventArgs e)

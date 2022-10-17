@@ -34,10 +34,7 @@ namespace WpfDuckHunt.Views
              GameController.newGame();
 
         }
-        public static void getMousePos()
-        {
-            
-        }
+     
         protected override void Initialize()
         {
            
@@ -62,6 +59,7 @@ namespace WpfDuckHunt.Views
             dictionary.Add(EnumDogState.SNIFF1, sniff_1);
             dictionary.Add(EnumDogState.JUMP_UP, jump);
             dictionary.Add(EnumDogState.JUMP_DOWN, jump);
+         
 
             // graphics for duck //
             fly1 = getContent("duck/blackDuck/fly1.png");
