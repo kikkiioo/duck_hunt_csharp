@@ -34,7 +34,10 @@ namespace WpfDuckHunt.Views
              GameController.newGame();
 
         }
-     
+        public static void getMousePos()
+        {
+            
+        }
         protected override void Initialize()
         {
            
@@ -59,7 +62,6 @@ namespace WpfDuckHunt.Views
             dictionary.Add(EnumDogState.SNIFF1, sniff_1);
             dictionary.Add(EnumDogState.JUMP_UP, jump);
             dictionary.Add(EnumDogState.JUMP_DOWN, jump);
-         
 
             // graphics for duck //
             fly1 = getContent("duck/blackDuck/fly1.png");
@@ -102,11 +104,7 @@ namespace WpfDuckHunt.Views
         }
         protected override void Update(GameTime time)
         {
-<<<<<<< HEAD
-            if (GameController.getGame().paused == false)
-=======
             if (GameController.game.paused == false)
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
             {
                 delta = (float)time.ElapsedGameTime.TotalSeconds;
                 GameController.updateActors(delta);
@@ -120,33 +118,12 @@ namespace WpfDuckHunt.Views
 
         protected override void Draw(GameTime time)
         {
-<<<<<<< HEAD
-            if (GameController.getGame().paused == false)
-=======
             if (GameController.game.paused == false)
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
             {
                 _spriteBatch.Begin();
                 _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
 
 
-<<<<<<< HEAD
-                for (int i = 0; i < GameController.getGame().dogActors.Count; i++)
-                {
-                    if (GameController.getGame().dogActors[i].State == EnumDogState.NOTHING)
-                    {
-                        break;
-                    }
-                    _spriteBatch.Draw(dictionary[GameController.getGame().dogActors[i].State][(int)(GameController.getGame().dogActors[i].Frame)], new Vector2((float)GameController.getGame().dogActors[i].xPos, (float)GameController.getGame().dogActors[i].yPos), Color.White);
-                }
-                for (int i = 0; i < GameController.getGame().duckActors.Count; i++)
-                {
-                    if (GameController.getGame().duckActors[i].State == EnumDuckState.NOTHING)
-                    {
-                        break;
-                    }
-                    _spriteBatch.Draw(dictionary[GameController.getGame().duckActors[i].State][(int)(GameController.getGame().duckActors[i].Frame)], new Vector2((float)GameController.getGame().duckActors[i].xPos, (float)GameController.getGame().duckActors[i].yPos), Color.White);
-=======
                 for (int i = 0; i < GameController.game.dogActors.Count; i++)
                 {
                     if (GameController.game.dogActors[i].State == EnumDogState.NOTHING)
@@ -162,7 +139,6 @@ namespace WpfDuckHunt.Views
                         break;
                     }
                     _spriteBatch.Draw(dictionary[GameController.game.duckActors[i].State][(int)(GameController.game.duckActors[i].Frame)], new Vector2((float)GameController.game.duckActors[i].xPos, (float)GameController.game.duckActors[i].yPos), Color.White);
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
                 }
                 _spriteBatch.End();
                 base.Draw(time);

@@ -6,27 +6,13 @@ using System.Threading.Tasks;
 using MonoGame.Framework.WpfInterop.Input;
 using WpfDuckHunt.Models;
 using Microsoft.Xna.Framework.Graphics;
-using System.Security.RightsManagement;
-using System.Text.Json;
-using Newtonsoft.Json;
-using JsonSerializer = System.Text.Json.JsonSerializer;
-using System.IO;
 
 namespace WpfDuckHunt.Controllers
 {
     public class GameController
     {
-<<<<<<< HEAD
-        private static Game game = new Game();
-        
-        public static Game getGame()
-        {
-            return game;
-        }
-=======
         public static Game game = new Game();
         
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
 
         public static void newGame()
         {
@@ -221,17 +207,5 @@ namespace WpfDuckHunt.Controllers
             
         }
 
-<<<<<<< HEAD
-        public static void saveGame()
-        {
-      
-            string fileName = "data.json";
-            string jsonString = JsonSerializer.Serialize(game);
-            File.WriteAllText(fileName, jsonString);
-
-        }
-
-=======
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
     }
 }

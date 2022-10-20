@@ -30,20 +30,11 @@ namespace WpfDuckHunt.Views
         private void uiButtonNewGame_Click(object sender, RoutedEventArgs e)
         {
             GameController.newGame();
-            
+            uiButtonNewGame.Content = GameController.game.dogActors[0].animation_duration;
         }
 
         private void uiButtonPauseGame_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
-            if (GameController.getGame().paused == false)
-            {
-                GameController.getGame().paused = true;
-            }
-            else
-            {
-                GameController.getGame().paused = false;
-=======
             if (GameController.game.paused == false)
             {
                 GameController.game.paused = true;
@@ -51,25 +42,14 @@ namespace WpfDuckHunt.Views
             else
             {
                 GameController.game.paused = false;
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
             }
         }
 
         private void uiButtonSaveGame_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
-            GameController.saveGame();
-        }
-        private void uiButtonLoadGame_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-=======
 
         }
    
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Point point;
