@@ -1,1 +1,1 @@
-{"dogActors":[{"Frame":0.9333848059177399,"animation_duration":2.376895,"xPos":118.8447533249855,"yPos":320}],"duckActors":[{"DuckType":"black","score":500,"flyingDirection":"up","Frame":0,"animation_duration":0,"xPos":240,"yPos":260}]}
+{"level":0,"score":0,"shotCount":0,"paused":false,"dogActors":[{"State":0,"Frame":1.0,"animation_duration":0.0,"xPos":370.30277782678604,"yPos":250.83298528194427}],"duckActors":[{"State":0,"FlyingDirection":0,"score":500,"Frame":0.0,"animation_duration":0.0,"xPos":310.8613793849945,"yPos":189.1386206150055}]}

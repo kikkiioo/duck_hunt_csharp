@@ -6,27 +6,23 @@ using System.Threading.Tasks;
 
 namespace WpfDuckHunt.Models
 {
-<<<<<<< HEAD
     [Serializable]
-=======
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
     public class Duck : Actor
     {
         public EnumDuckState State = EnumDuckState.NOTHING;
-        public String DuckType { get; set; }
         public int score { get; set; }
-        public String flyingDirection { get; set; }
+
+        public EnumDuckFlyingDirection FlyingDirection = EnumDuckFlyingDirection.UP;
         public double Frame { get; set; }
         public float animation_duration { get; set; }
 
-        public Duck (double x, double y, EnumDuckState state, String duckType, int score, String FlyingDirection, double frame, float Animation_duration)
+        public Duck (double x, double y, EnumDuckState state, int score, EnumDuckFlyingDirection FlyingDirection, double frame, float Animation_duration)
         {
             this.xPos = x;
             this.yPos = y;
             this.State = state;
-            this.DuckType = duckType;
             this.score = score;
-            this.flyingDirection = FlyingDirection;
+            this.FlyingDirection = FlyingDirection;
             this.Frame = frame;
             this.animation_duration = Animation_duration;
         }

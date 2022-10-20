@@ -250,3 +250,7 @@ C:\Users\krist\OneDrive\Desktop\c#_duckhunt\WpfDuckHunt\obj\Debug\net6.0-windows
 C:\Users\krist\OneDrive\Desktop\c#_duckhunt\WpfDuckHunt\obj\Debug\net6.0-windows\WpfDuckHunt.genruntimeconfig.cache
 C:\Users\krist\OneDrive\Desktop\c#_duckhunt\WpfDuckHunt\obj\Debug\net6.0-windows\ref\WpfDuckHunt.dll
 C:\Users\krist\OneDrive\Desktop\c#_duckhunt\WpfDuckHunt\bin\Debug\net6.0-windows\Newtonsoft.Json.dll
+C:\Users\krist\OneDrive\Desktop\c#_duckhunt\WpfDuckHunt\bin\Debug\net6.0-windows\graphics\background.png
+C:\Users\krist\OneDrive\Desktop\c#_duckhunt\WpfDuckHunt\bin\Debug\net6.0-windows\graphics\ground.png
+C:\Users\krist\OneDrive\Desktop\c#_duckhunt\WpfDuckHunt\bin\Debug\net6.0-windows\graphics\sniff3.png
+C:\Users\krist\OneDrive\Desktop\c#_duckhunt\WpfDuckHunt\obj\Debug\net6.0-windows\WpfDuckHunt_Content.g.cs

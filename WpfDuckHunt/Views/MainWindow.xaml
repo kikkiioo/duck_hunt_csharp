@@ -5,14 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDuckHunt" xmlns:views="clr-namespace:WpfDuckHunt.Views"
         mc:Ignorable="d"
-<<<<<<< HEAD
         PreviewMouseLeftButtonDown="Window_MouseLeftButtonDown"
-       
-=======
-        MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        MouseDown="Window_MouseDown"
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
-        
    
         Title="Duck Hunt" Height="540" Width="550">
     <Grid>
@@ -24,11 +17,11 @@
             <Button x:Name="uiButtonPauseGame" Click="uiButtonPauseGame_Click" Content="Pause Game" Height="40" Width="115" Background="#FF8DD700" FontFamily="Arial Black"/>
             <Button x:Name="uiButtonNewGame" Click="uiButtonNewGame_Click" Content="New Game" Height="40" Width="115" Background="#FF8DD700" BorderBrush="#FF707070" FontFamily="Arial Black"/>
             <Button x:Name="uiButtonSaveGame" Click="uiButtonSaveGame_Click" Content="Save Game" Height="40" Width="115" Background="#FF8DD700" FontFamily="Arial Black"/>
-<<<<<<< HEAD
+
             <Button x:Name="uiButtonLoadGame" Click="uiButtonLoadGame_Click" Content="Load Game" Height="40" Width="115" Background="#FF8DD700" FontFamily="Arial Black"/>
-=======
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
+
         </StackPanel>
         <views:MainGame Grid.Row="1" Grid.ColumnSpan="1" />
+        <TextBox x:Name="ui_game_Score" HorizontalAlignment="Left" Height="16" Margin="413,421,0,0" Grid.Row="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="106" Foreground="White" Background="Black" TextAlignment="Center" BorderBrush="Black" AutomationProperties.LabeledBy="{Binding Text, ElementName=ui_game_Score}"/>
     </Grid>
 </Window>

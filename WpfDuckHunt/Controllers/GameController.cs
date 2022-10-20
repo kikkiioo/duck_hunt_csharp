@@ -8,60 +8,62 @@ using WpfDuckHunt.Models;
 using Microsoft.Xna.Framework.Graphics;
 using System.Security.RightsManagement;
 using System.Text.Json;
-using Newtonsoft.Json;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 using System.IO;
+using SharpDX.Direct3D9;
+using System.Windows;
+using WpfDuckHunt.Views;
 
 namespace WpfDuckHunt.Controllers
 {
     public class GameController
     {
-<<<<<<< HEAD
+
         private static Game game = new Game();
         
         public static Game getGame()
         {
             return game;
         }
-=======
-        public static Game game = new Game();
-        
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
+
+        public static int getScore()
+        {
+            return game.score;
+        }
 
         public static void newGame()
         {
             game.dogActors.Clear();
             Dog dog = new Dog(x: 0, y: 320, state: EnumDogState.SNIFF, frame: 0, Animation_duration: 0);
             game.dogActors.Add(dog);
-            Duck duck = new Duck(x: 240, y: 260, state: EnumDuckState.NOTHING, duckType: "black", score: 500,FlyingDirection:"up", frame: 0, Animation_duration: 0);
+            Duck duck = new Duck(x: 240, y: 260, state: EnumDuckState.NOTHING, score: 500, FlyingDirection: EnumDuckFlyingDirection.UP, frame: 0, Animation_duration: 0);
             game.duckActors.Add(duck);
         }
         public static void updateControllers(float delta)
         {
-            for (int i = 0; i < game.dogActors.Count; i++)
+            foreach(var dogActor in game.dogActors)
             {
-                if (game.dogActors[i].State == EnumDogState.SNIFF)
+                if (dogActor.State == EnumDogState.SNIFF)
                 {
-                    DogController.sniff(game.dogActors[i], delta);
+                    DogController.sniff(dogActor, delta);
                 }
-                if (game.dogActors[i].State == EnumDogState.JUMP_UP)
+                if (dogActor.State == EnumDogState.JUMP_UP)
                 {
-                    DogController.jumpUp(game.dogActors[i], delta);
+                    DogController.jumpUp(dogActor, delta);
                 }
-                if (game.dogActors[i].State == EnumDogState.JUMP_DOWN)
+                if (dogActor.State == EnumDogState.JUMP_DOWN)
                 {
-                    DogController.jumpDown(game.dogActors[i], delta);
+                    DogController.jumpDown(dogActor, delta);
                 }
             }
-            for (int i = 0; i < game.duckActors.Count; i++)
+            foreach(var duckActor in game.duckActors)
             {
-                if(game.duckActors[i].State == EnumDuckState.RIGHTFLY)
+                if(duckActor.State == EnumDuckState.RIGHTFLY)
                 {
-                    DuckController.flyRight(game.duckActors[i], delta);
+                    DuckController.flyRight(duckActor, delta);
                 }
-                if(game.duckActors[i].State == EnumDuckState.LEFTFLY)
+                if(duckActor.State == EnumDuckState.LEFTFLY)
                 {
-                    DuckController.flyLeft(game.duckActors[i], delta);
+                    DuckController.flyLeft(duckActor, delta);
                 }
             }
         }
@@ -69,60 +71,61 @@ namespace WpfDuckHunt.Controllers
         public static void updateActors(float delta)
         {
             ////////  DOG ACTORS  //////// 
-            for (int i = 0; i < game.dogActors.Count; i++)
+            foreach(var dogActor in game.dogActors)
             {
-                if (game.dogActors[i].State == EnumDogState.SNIFF)
+
+                if (dogActor.State == EnumDogState.SNIFF)
                 {
-                    game.dogActors[i].animation_duration += delta;
-                    game.dogActors[i].Frame += 8 * delta;
-                    if (game.dogActors[i].Frame > 4)
+                    dogActor.animation_duration += delta;
+                    dogActor.Frame += 8 * delta;
+                    if (dogActor.Frame > 4)
                     {
-                        game.dogActors[i].Frame = 0;
+                        dogActor.Frame = 0;
                     }
-                    if (game.dogActors[i].animation_duration >= 4.0)
+                    if (dogActor.animation_duration >= 4.0)
                     {
-                        game.dogActors[i].animation_duration = 0;
-                        game.dogActors[i].State = EnumDogState.SNIFF1;
+                        dogActor.animation_duration = 0;
+                        dogActor.State = EnumDogState.SNIFF1;
                     }
                 }
 
-                if (game.dogActors[i].State == EnumDogState.SNIFF1)
+                if (dogActor.State == EnumDogState.SNIFF1)
                 {
-                    game.dogActors[i].animation_duration += delta;
-                    game.dogActors[i].Frame += 8 * delta;
+                    dogActor.animation_duration += delta;
+                    dogActor.Frame += 8 * delta;
 
-                    if (game.dogActors[i].Frame > 2)
+                    if (dogActor.Frame > 2)
                     {
-                        game.dogActors[i].Frame = 0;
+                        dogActor.Frame = 0;
                     }
-                    if (game.dogActors[i].animation_duration > 2.5)
+                    if (dogActor.animation_duration > 2.5)
                     {
-                        game.dogActors[i].animation_duration = 0;
-                        game.dogActors[i].State = EnumDogState.JUMP_UP;
+                        dogActor.animation_duration = 0;
+                        dogActor.State = EnumDogState.JUMP_UP;
                     }
                 }
 
-                if (game.dogActors[i].State == EnumDogState.JUMP_UP)
+                if (dogActor.State == EnumDogState.JUMP_UP)
                 {
-                    game.dogActors[i].Frame = 0;
-                    if (game.dogActors[i].yPos < 200)
+                    dogActor.Frame = 0;
+                    if (dogActor.yPos < 200)
                     {
-                        game.dogActors[i].State = EnumDogState.JUMP_DOWN;
+                        dogActor.State = EnumDogState.JUMP_DOWN;
                     }
 
                 }
 
-                if (game.dogActors[i].State == EnumDogState.JUMP_DOWN)
+                if (dogActor.State == EnumDogState.JUMP_DOWN)
                 {
-                    game.dogActors[i].Frame = 1;
-                    if (game.dogActors[i].yPos > 250)
+                    dogActor.Frame = 1;
+                    if (dogActor.yPos > 250)
                     {
-                        game.dogActors[i].State = EnumDogState.NOTHING;
-                        for (int j = 0; j < game.duckActors.Count; j++)
+                        dogActor.State = EnumDogState.NOTHING;
+                        foreach(var duckActor in game.duckActors)
                         {
-                            if(game.duckActors[j].State == EnumDuckState.NOTHING)
+                            if(duckActor.State == EnumDuckState.NOTHING)
                             {
-                                game.duckActors[j].State = EnumDuckState.RIGHTFLY;
+                                duckActor.State = EnumDuckState.RIGHTFLY;
                             }
                         }
                     }
@@ -133,67 +136,67 @@ namespace WpfDuckHunt.Controllers
 
             }
             //////// DUCK ACTORS  ////////
-            for (int j = 0; j < game.duckActors.Count; j++)
+            foreach(var duckActor in game.duckActors)
             {
-                if (game.duckActors[j].State == EnumDuckState.RIGHTFLY)
+                if (duckActor.State == EnumDuckState.RIGHTFLY)
                 {   
                     
                     
-                    game.duckActors[j].Frame += 8 * delta;
+                    duckActor.Frame += 8 * delta;
                     
-                    if(game.duckActors[j].Frame > 3)
+                    if(duckActor.Frame > 3)
                     {
-                        game.duckActors[j].Frame = 0;
+                        duckActor.Frame = 0;
 
                     }
 
-                    if (game.duckActors[j].xPos > 550 || game.duckActors[j].yPos < 0)
+                    if (duckActor.xPos > 550 || duckActor.yPos < 0)
                     {
-                        game.duckActors[j].flyingDirection = "down";
-                        game.duckActors[j].State = EnumDuckState.LEFTFLY;
+                        duckActor.FlyingDirection = EnumDuckFlyingDirection.DOWN;
+                        duckActor.State = EnumDuckState.LEFTFLY;
 
                     }
-                    if(game.duckActors[j].xPos < 0 || game.duckActors[j].yPos > 270)
+                    if(duckActor.xPos < 0 || duckActor.yPos > 270)
                     {
-                        game.duckActors[j].flyingDirection = "up";
-                        game.duckActors[j].State = EnumDuckState.LEFTFLY;
+                        duckActor.FlyingDirection = EnumDuckFlyingDirection.UP;
+                        duckActor.State = EnumDuckState.LEFTFLY;
                     }
 
                 }
 
-                if (game.duckActors[j].State == EnumDuckState.LEFTFLY)
+                if (duckActor.State == EnumDuckState.LEFTFLY)
                 {
                     
                     
-                    game.duckActors[j].Frame += 8 * delta;
+                    duckActor.Frame += 8 * delta;
 
-                    if (game.duckActors[j].Frame > 3)
+                    if (duckActor.Frame > 3)
                     {
-                        game.duckActors[j].Frame = 0;
+                        duckActor.Frame = 0;
 
                     }
 
-                    if (game.duckActors[j].xPos < 0 || game.duckActors[j].yPos > 269)
+                    if (duckActor.xPos < 0 || duckActor.yPos > 269)
                     {
-                        game.duckActors[j].flyingDirection = "up";
-                        game.duckActors[j].State = EnumDuckState.RIGHTFLY;
+                        duckActor.FlyingDirection = EnumDuckFlyingDirection.UP;
+                        duckActor.State = EnumDuckState.RIGHTFLY;
 
                     }
-                    if (game.duckActors[j].xPos < -1)
+                    if (duckActor.xPos < -1)
                     { 
-                        game.duckActors[j].flyingDirection = "down";
-                        game.duckActors[j].State = EnumDuckState.RIGHTFLY;
+                        duckActor.FlyingDirection = EnumDuckFlyingDirection.DOWN;
+                        duckActor.State = EnumDuckState.RIGHTFLY;
                     }
 
                 }
 
-                if(game.duckActors[j].State == EnumDuckState.DIE)
+                if(duckActor.State == EnumDuckState.DIE)
                 {
-                    game.duckActors[j].animation_duration += delta;
-                    if (game.duckActors[j].animation_duration > 2.5)
+                    duckActor.animation_duration += delta;
+                    if (duckActor.animation_duration > 2.5)
                     {
-                        game.duckActors[j].animation_duration = 0;
-                        game.duckActors[j].State = EnumDuckState.NOTHING;
+                        duckActor.animation_duration = 0;
+                        duckActor.State = EnumDuckState.NOTHING;
                     }
                 }
             }
@@ -202,36 +205,51 @@ namespace WpfDuckHunt.Controllers
         public static void checkCollision(double x, double y)
         {
             
-            for(int i = 0; i < game.duckActors.Count; i++)
+            foreach(var duckActor in game.duckActors)
             {
                 double duckX1,duckX2,duckY1,duckY2;
-                duckX1 = game.duckActors[i].xPos - 25;
-                duckX2 = game.duckActors[i].xPos + 25;
-                duckY1 = game.duckActors[i].yPos + 60;
-                duckY2 = game.duckActors[i].yPos - 20 ;
+                duckX1 = duckActor.xPos - 25;
+                duckX2 = duckActor.xPos + 25;
+                duckY1 = duckActor.yPos + 60;
+                duckY2 = duckActor.yPos - 20 ;
 
                 if(duckY1 >= y && y >= duckY2 && x >= duckX1 && duckX2 >= x)
                 {
-                    game.duckActors[i].State = EnumDuckState.DIE;
-                    game.duckActors[i].Frame = 0;
+                    duckActor.State = EnumDuckState.DIE;
+                    duckActor.Frame = 0;
+                    game.score += duckActor.score;
 
                 }
 
             }
             
         }
-
-<<<<<<< HEAD
         public static void saveGame()
         {
       
             string fileName = "data.json";
-            string jsonString = JsonSerializer.Serialize(game);
+            var jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(game);
             File.WriteAllText(fileName, jsonString);
+            game.duckActors.Clear();
+            game.dogActors.Clear();
 
         }
 
-=======
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
+        public static void loadGame()
+        {
+            string fileName = "data.json";
+            string jsonString = File.ReadAllText(fileName);
+            var game1 = Newtonsoft.Json.JsonConvert.DeserializeObject<Game>(jsonString);
+
+            foreach (var dog in game1.dogActors) {
+                game.dogActors.Add(dog);
+            }
+            foreach (var duck in game1.duckActors)
+            {
+                game.duckActors.Add(duck);
+            }
+
+        }
+
     }
 }

@@ -8,30 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/background.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/dog/catch.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/dog/jump1.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/dog/jump2.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/dog/jump3.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/dog/sniff1.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/dog/sniff2.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/dog/sniff3.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/dog/sniff4.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/dog/sniff5.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/dog/sniff6.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/duck/blackduck/all.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/duck/blackduck/die1.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/duck/blackduck/die2.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/duck/blackduck/die3.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/duck/blackduck/fly1.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/duck/blackduck/fly2.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/duck/blackduck/fly3.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/duck/blackduck/fly4.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/duck/blackduck/fly5.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/duck/blackduck/fly6.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/ground.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/level_numbers/0.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/pause.xnb")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("content/bin/windows/content/sniff3.xnb")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("graphics/background.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("graphics/ground.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("graphics/sniff3.png")]
 
 

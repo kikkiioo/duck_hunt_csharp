@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Serialization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,6 @@ using System.Threading.Tasks;
 namespace WpfDuckHunt.Models
 {
     [Serializable]
-    
     public class Dog : Actor
     {
         public EnumDogState State = EnumDogState.NOTHING;

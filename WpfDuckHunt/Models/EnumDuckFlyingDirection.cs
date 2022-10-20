@@ -11,16 +11,10 @@ namespace WpfDuckHunt.Models
     [Serializable]
     [DataContract]
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum EnumDogState
+
+    public enum EnumDuckFlyingDirection
     {
-        NOTHING,
-        SNIFF,
-        SNIFF1,
-        LOOK,
-        JUMP_UP,
-        JUMP_DOWN,
-        CATCHUP,
-        CATCHDOWN,
-        GIGGLE,
+        UP,
+        DOWN
     }
 }

@@ -22,6 +22,7 @@ namespace WpfDuckHunt.Views
 
     public partial class MainWindow : Window
     {
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -35,7 +36,7 @@ namespace WpfDuckHunt.Views
 
         private void uiButtonPauseGame_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
+
             if (GameController.getGame().paused == false)
             {
                 GameController.getGame().paused = true;
@@ -43,38 +44,29 @@ namespace WpfDuckHunt.Views
             else
             {
                 GameController.getGame().paused = false;
-=======
-            if (GameController.game.paused == false)
-            {
-                GameController.game.paused = true;
             }
-            else
-            {
-                GameController.game.paused = false;
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
-            }
+
         }
 
         private void uiButtonSaveGame_Click(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
+
             GameController.saveGame();
         }
         private void uiButtonLoadGame_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            GameController.loadGame();
         }
 
-=======
+        
 
-        }
-   
->>>>>>> 4934e7196b7086046a0e676e5f080319d00ff878
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Point point;
             point = e.GetPosition(this);
             GameController.checkCollision(point.X,point.Y);
+            ui_game_Score.Text = GameController.getScore().ToString();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -84,5 +76,7 @@ namespace WpfDuckHunt.Views
             GameController.checkCollision(point.X,point.Y);
 
         }
+
+       
     }
 }
