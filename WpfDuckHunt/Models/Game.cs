@@ -6,18 +6,23 @@ using System.Threading.Tasks;
 
 namespace WpfDuckHunt.Models
 {
+    [Serializable]
     public class Game
     {
-        public List<Actor> Actors { get; set; }
+        public List<Dog> dogActors { get; set; }
+        public List<Duck> duckActors { get; set; }
         public int level;
         public int score;
         public int shotCount;
+        public bool paused;
         public Game()
         {
-            this.Actors = new List<Actor>();
+            this.dogActors = new List<Dog>();
+            this.duckActors = new List<Duck>();
             this.level = 0;
             this.score = 0;
             this.shotCount = 0;
+            this.paused = false;
         }
 
     }

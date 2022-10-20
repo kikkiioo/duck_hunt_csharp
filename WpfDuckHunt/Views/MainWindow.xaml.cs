@@ -12,12 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfDuckHunt.Controllers;
 
 namespace WpfDuckHunt.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -27,6 +29,43 @@ namespace WpfDuckHunt.Views
 
         private void uiButtonNewGame_Click(object sender, RoutedEventArgs e)
         {
+            GameController.newGame();
+            
+        }
+
+        private void uiButtonPauseGame_Click(object sender, RoutedEventArgs e)
+        {
+            if (GameController.getGame().paused == false)
+            {
+                GameController.getGame().paused = true;
+            }
+            else
+            {
+                GameController.getGame().paused = false;
+            }
+        }
+
+        private void uiButtonSaveGame_Click(object sender, RoutedEventArgs e)
+        {
+            GameController.saveGame();
+        }
+        private void uiButtonLoadGame_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point;
+            point = e.GetPosition(this);
+            GameController.checkCollision(point.X,point.Y);
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point point;
+            point = e.GetPosition(this);
+            GameController.checkCollision(point.X,point.Y);
 
         }
     }

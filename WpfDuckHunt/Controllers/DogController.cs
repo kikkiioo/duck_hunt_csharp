@@ -13,5 +13,15 @@ namespace WpfDuckHunt.Controllers
         {
             dog.xPos += 50 * delta;
         }
+        public static void jumpUp(Dog dog, float delta)
+        {
+            dog.xPos += 50 * delta;
+            dog.yPos -= 50 * delta;
+        }
+        public static void jumpDown(Dog dog, float delta)
+        {
+            dog.xPos += 50 * delta;
+            dog.yPos += 50 * delta;
+        }
     }
 }

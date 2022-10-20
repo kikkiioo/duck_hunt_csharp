@@ -9,50 +9,74 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfDuckHunt.Models;
 using WpfDuckHunt.Controllers;
+using System.IO;
 
 namespace WpfDuckHunt.Views
 {
     public class MainGame : WpfGame
     {
-        private GraphicsDeviceManager _graphics;
+        
         private IGraphicsDeviceService _graphicsDeviceManager;
         private WpfKeyboard _keyboard;
         private WpfMouse _mouse;
         private SpriteBatch _spriteBatch;
         Texture2D background;
-        Texture2D sniff1, sniff2, sniff3, sniff4, sniff5, sniff6;
-        Dictionary<EnumDogState, List<Texture2D>> dictionary = new Dictionary<EnumDogState, List<Texture2D>>();
+        Texture2D sniff1, sniff2, sniff3, sniff4, sniff5, sniff6, jump1, jump2;
+        Texture2D fly1, fly2, fly3, fly4, fly5, fly6,die1,die2,die3;
+        Dictionary<Enum, List<Texture2D>> dictionary = new Dictionary<Enum, List<Texture2D>>();
         List<Texture2D> sniff = new List<Texture2D>();
 
         public float delta = 0;
+        Texture2D texture;
 
-        /*public MainGame()
+        public MainGame()
         {
-
-            _graphicsDeviceManager = new WpfGraphicsDeviceService(this);
-
-            Content.RootDirectory = "Content";
              GameController.newGame();
-        }*/
 
+        }
+     
         protected override void Initialize()
         {
            
             _graphicsDeviceManager = new WpfGraphicsDeviceService(this);
+
             
-            /*_graphics.PreferredBackBufferWidth = 550;
-            _graphics.PreferredBackBufferHeight = 480;
-            _graphics.ApplyChanges();*/
-            sniff1 = Content.Load<Texture2D>("dog/sniff1");
-            sniff2 = Content.Load<Texture2D>("dog/sniff2");
-            sniff3 = Content.Load<Texture2D>("dog/sniff3");
-            sniff4 = Content.Load<Texture2D>("dog/sniff4");
-            sniff5 = Content.Load<Texture2D>("dog/sniff5");
-            sniff6 = Content.Load<Texture2D>("dog/sniff6");
+            background = getContent("background.png");
+            /// graphics for dog
+            sniff1 = getContent("dog/sniff1.png");
+            sniff2 = getContent("dog/sniff2.png");
+            sniff3 = getContent("dog/sniff3.png");
+            sniff4 = getContent("dog/sniff4.png");
+            sniff5 = getContent("dog/sniff5.png");
+            sniff6 = getContent("dog/sniff6.png");
+            jump1 = getContent("dog/jump2.png");
+            jump2 = getContent("dog/jump3.png");
             List<Texture2D> sniff = new List<Texture2D>() { sniff1, sniff2, sniff3, sniff4 };
             List<Texture2D> sniff_1 = new List<Texture2D>() { sniff5, sniff6 };
+            List<Texture2D> jump = new List<Texture2D>() { jump1, jump2 };
+
             dictionary.Add(EnumDogState.SNIFF, sniff);
             dictionary.Add(EnumDogState.SNIFF1, sniff_1);
+            dictionary.Add(EnumDogState.JUMP_UP, jump);
+            dictionary.Add(EnumDogState.JUMP_DOWN, jump);
+         
+
+            // graphics for duck //
+            fly1 = getContent("duck/blackDuck/fly1.png");
+            fly2 = getContent("duck/blackDuck/fly2.png");
+            fly3 = getContent("duck/blackDuck/fly3.png");
+            fly4 = getContent("duck/blackDuck/fly4.png");
+            fly5 = getContent("duck/blackDuck/fly5.png");
+            fly6 = getContent("duck/blackDuck/fly6.png");
+            die1 = getContent("duck/blackDuck/die1.png");
+            die2 = getContent("duck/blackDuck/die1.png");
+            die3 = getContent("duck/blackDuck/die1.png");
+            List<Texture2D> rightFly = new List<Texture2D> { fly1, fly2, fly3 };
+            List<Texture2D> leftFly = new List<Texture2D> { fly4,fly5, fly6 };
+            List<Texture2D> die = new List<Texture2D> { die1, die2, die3 };
+            dictionary.Add(EnumDuckState.RIGHTFLY, rightFly);
+            dictionary.Add(EnumDuckState.LEFTFLY, leftFly);
+           dictionary.Add(EnumDuckState.DIE, die);
             // must be initialized. required by Content loading and rendering (will add itself to the Services)
             // note that MonoGame requires this to be initialized in the constructor, while WpfInterop requires it to
             // be called inside Initialize (before base.Initialize())
@@ -68,14 +92,23 @@ namespace WpfDuckHunt.Views
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             // content loading now possible
         }
-
+        Texture2D getContent(String content)
+        {
+            using (FileStream filestream = new FileStream("./graphics/"+content, FileMode.Open))
+            {
+                texture = Texture2D.FromStream(GraphicsDevice, filestream);
+            }
+            return texture;
+        }
         protected override void Update(GameTime time)
         {
-            delta = (float)time.ElapsedGameTime.TotalSeconds;
-            GameController.updateActors(delta);
-            GameController.updateControllers(delta);
-            base.Update(time);
-
+            if (GameController.getGame().paused == false)
+            {
+                delta = (float)time.ElapsedGameTime.TotalSeconds;
+                GameController.updateActors(delta);
+                GameController.updateControllers(delta);
+                base.Update(time);
+            }
             // every update we can now query the keyboard & mouse for our WpfGame
             var mouseState = _mouse.GetState();
             var keyboardState = _keyboard.GetState();
@@ -83,23 +116,31 @@ namespace WpfDuckHunt.Views
 
         protected override void Draw(GameTime time)
         {
-            _spriteBatch.Begin();
-            _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
-
-            
-            for (int i = 0; i < GameController.game.Actors.Count; i++)
+            if (GameController.getGame().paused == false)
             {
-                if (GameController.game.Actors[i].GetType() == typeof(Dog))
+                _spriteBatch.Begin();
+                _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
+
+
+                for (int i = 0; i < GameController.getGame().dogActors.Count; i++)
                 {
-                    Dog dog = (Dog)GameController.game.Actors[i]; // nezinu kā šo apiet lai nebūtu jauns objekts jātaisa ? 
-
-                    _spriteBatch.Draw(dictionary[dog.State][(int)(dog.Frame)], new Vector2((float)dog.xPos, (float)dog.yPos), Color.White);
-
+                    if (GameController.getGame().dogActors[i].State == EnumDogState.NOTHING)
+                    {
+                        break;
+                    }
+                    _spriteBatch.Draw(dictionary[GameController.getGame().dogActors[i].State][(int)(GameController.getGame().dogActors[i].Frame)], new Vector2((float)GameController.getGame().dogActors[i].xPos, (float)GameController.getGame().dogActors[i].yPos), Color.White);
                 }
-
+                for (int i = 0; i < GameController.getGame().duckActors.Count; i++)
+                {
+                    if (GameController.getGame().duckActors[i].State == EnumDuckState.NOTHING)
+                    {
+                        break;
+                    }
+                    _spriteBatch.Draw(dictionary[GameController.getGame().duckActors[i].State][(int)(GameController.getGame().duckActors[i].Frame)], new Vector2((float)GameController.getGame().duckActors[i].xPos, (float)GameController.getGame().duckActors[i].yPos), Color.White);
+                }
+                _spriteBatch.End();
+                base.Draw(time);
             }
-            _spriteBatch.End();
-            base.Draw(time);
         }
     }
 }

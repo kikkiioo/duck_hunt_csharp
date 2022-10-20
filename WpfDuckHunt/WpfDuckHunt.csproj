@@ -8,9 +8,109 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.1.303" />
+    <None Remove="data.json" />
+    <None Remove="graphics\background.png" />
+    <None Remove="graphics\dog\catch.png" />
+    <None Remove="graphics\dog\jump1.png" />
+    <None Remove="graphics\dog\jump2.png" />
+    <None Remove="graphics\dog\jump3.png" />
+    <None Remove="graphics\dog\sniff1.png" />
+    <None Remove="graphics\dog\sniff2.png" />
+    <None Remove="graphics\dog\sniff3.png" />
+    <None Remove="graphics\dog\sniff4.png" />
+    <None Remove="graphics\dog\sniff5.png" />
+    <None Remove="graphics\dog\sniff6.png" />
+    <None Remove="graphics\duck\blackDuck\all.png" />
+    <None Remove="graphics\duck\blackDuck\die1.png" />
+    <None Remove="graphics\duck\blackDuck\die2.png" />
+    <None Remove="graphics\duck\blackDuck\die3.png" />
+    <None Remove="graphics\duck\blackDuck\fly1.png" />
+    <None Remove="graphics\duck\blackDuck\fly2.png" />
+    <None Remove="graphics\duck\blackDuck\fly3.png" />
+    <None Remove="graphics\duck\blackDuck\fly4.png" />
+    <None Remove="graphics\duck\blackDuck\fly5.png" />
+    <None Remove="graphics\duck\blackDuck\fly6.png" />
+    <None Remove="graphics\ground.png" />
+    <None Remove="graphics\sniff3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MonoGame.Framework.WindowsDX" Version="3.8.1.303" />
     <PackageReference Include="MonoGame.Framework.WpfInterop" Version="1.9.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="data.json" />
+    <Resource Include="graphics\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\dog\catch.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\dog\jump1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\dog\jump2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\dog\jump3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\dog\sniff1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\dog\sniff2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\dog\sniff3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\dog\sniff4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\dog\sniff5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\dog\sniff6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\duck\blackDuck\all.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\duck\blackDuck\die1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\duck\blackDuck\die2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\duck\blackDuck\die3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\duck\blackDuck\fly1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\duck\blackDuck\fly2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\duck\blackDuck\fly3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\duck\blackDuck\fly4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\duck\blackDuck\fly5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\duck\blackDuck\fly6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\ground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="graphics\sniff3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

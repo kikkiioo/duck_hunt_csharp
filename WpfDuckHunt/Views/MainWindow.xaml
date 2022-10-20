@@ -5,20 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfDuckHunt" xmlns:views="clr-namespace:WpfDuckHunt.Views"
         mc:Ignorable="d"
-        Title="Duck Hunt" Height="550" Width="500">
+        PreviewMouseLeftButtonDown="Window_MouseLeftButtonDown"
+       
+        
+   
+        Title="Duck Hunt" Height="540" Width="550">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="..\graphics\background.png"
-                AlignmentY="Top" AlignmentX="Center"/>
-        </Grid.Background>
-        <StackPanel Orientation="Horizontal"/>
-        <views:MainGame Grid.Row="1" />
-        <Button Content="Save Game" Margin="425,0,10,454" Grid.Row="1"/>
-        <Button x:Name="uiButtonNewGame" Click="uiButtonNewGame_Click" Content="New Game" Margin="425,51,10,403" Grid.Row="1"/>
-
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Background="#63afff">
+            <Button x:Name="uiButtonPauseGame" Click="uiButtonPauseGame_Click" Content="Pause Game" Height="40" Width="115" Background="#FF8DD700" FontFamily="Arial Black"/>
+            <Button x:Name="uiButtonNewGame" Click="uiButtonNewGame_Click" Content="New Game" Height="40" Width="115" Background="#FF8DD700" BorderBrush="#FF707070" FontFamily="Arial Black"/>
+            <Button x:Name="uiButtonSaveGame" Click="uiButtonSaveGame_Click" Content="Save Game" Height="40" Width="115" Background="#FF8DD700" FontFamily="Arial Black"/>
+            <Button x:Name="uiButtonLoadGame" Click="uiButtonLoadGame_Click" Content="Load Game" Height="40" Width="115" Background="#FF8DD700" FontFamily="Arial Black"/>
+        </StackPanel>
+        <views:MainGame Grid.Row="1" Grid.ColumnSpan="1" />
     </Grid>
 </Window>

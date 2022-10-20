@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfDuckHunt.Models
 {
+    [Serializable]
     public class Actor
     {
         public double xPos { get; set; }
