@@ -27,6 +27,7 @@ namespace WpfDuckHunt.Views
         {
             InitializeComponent();
         }
+       
 
         private void uiButtonNewGame_Click(object sender, RoutedEventArgs e)
         {
@@ -59,24 +60,18 @@ namespace WpfDuckHunt.Views
             GameController.loadGame();
         }
 
-        
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Point point;
-            point = e.GetPosition(this);
-            GameController.checkCollision(point.X,point.Y);
-            ui_game_Score.Text = GameController.getScore().ToString();
-        }
-
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Point point;
             point = e.GetPosition(this);
+            uiButtonLoadGame.Content = GameController.getGame().duckActors[0].yPos.ToString();
+            uiButtonNewGame.Content = point.Y.ToString();
+
             GameController.checkCollision(point.X,point.Y);
+            ui_game_Score.Text = GameController.getScore().ToString();
 
         }
 
-       
+      
     }
 }

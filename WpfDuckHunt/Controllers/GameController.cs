@@ -12,14 +12,17 @@ using System.IO;
 using SharpDX.Direct3D9;
 using System.Windows;
 using WpfDuckHunt.Views;
+using System.Windows.Navigation;
+using System.Windows.Media.Animation;
 
 namespace WpfDuckHunt.Controllers
 {
     public class GameController
     {
+        static Random rnd = new Random();
 
         private static Game game = new Game();
-        
+
         public static Game getGame()
         {
             return game;
@@ -29,14 +32,49 @@ namespace WpfDuckHunt.Controllers
         {
             return game.score;
         }
+        public static double randDuckXpos()
+        {
+            double x = rnd.Next(10, 540);
+            return x;
+        }
+        public static EnumDuckState randDuckFlyingDirection(){
+            int x = rnd.Next(2);
+            EnumDuckState direction;
+            if (x == 0)
+            {
+                direction = EnumDuckState.RIGHTFLY;
+            }
+            else
+            {
+                direction = EnumDuckState.LEFTFLY;
+            }
+            return direction;
+        }
+
+        public static void generateDucks()
+        {
+            foreach (var duckActor in game.duckActors)
+            {
+                if (duckActor.State == EnumDuckState.NOTHING)
+                {
+                    duckActor.xPos = randDuckXpos();
+                    duckActor.State = randDuckFlyingDirection();
+                    duckActor.animation_duration = 0;
+                }
+            }
+        }
 
         public static void newGame()
         {
             game.dogActors.Clear();
             Dog dog = new Dog(x: 0, y: 320, state: EnumDogState.SNIFF, frame: 0, Animation_duration: 0);
             game.dogActors.Add(dog);
+            game.duckActors.Clear();
             Duck duck = new Duck(x: 240, y: 260, state: EnumDuckState.NOTHING, score: 500, FlyingDirection: EnumDuckFlyingDirection.UP, frame: 0, Animation_duration: 0);
+            Duck duck1 = new Duck(x: 240, y: 260, state: EnumDuckState.NOTHING, score: 500, FlyingDirection: EnumDuckFlyingDirection.UP, frame: 0, Animation_duration: 0);
             game.duckActors.Add(duck);
+            game.duckActors.Add(duck1);
+            game.score = 0;
         }
         public static void updateControllers(float delta)
         {
@@ -64,6 +102,10 @@ namespace WpfDuckHunt.Controllers
                 if(duckActor.State == EnumDuckState.LEFTFLY)
                 {
                     DuckController.flyLeft(duckActor, delta);
+                }
+                if(duckActor.State == EnumDuckState.FALL)
+                {
+                    DuckController.fall(duckActor, delta);
                 }
             }
         }
@@ -125,7 +167,9 @@ namespace WpfDuckHunt.Controllers
                         {
                             if(duckActor.State == EnumDuckState.NOTHING)
                             {
-                                duckActor.State = EnumDuckState.RIGHTFLY;
+                                duckActor.State = randDuckFlyingDirection();
+                                duckActor.xPos = randDuckXpos();
+
                             }
                         }
                     }
@@ -150,7 +194,7 @@ namespace WpfDuckHunt.Controllers
 
                     }
 
-                    if (duckActor.xPos > 550 || duckActor.yPos < 0)
+                    if (duckActor.xPos > 540 || duckActor.yPos < 0)
                     {
                         duckActor.FlyingDirection = EnumDuckFlyingDirection.DOWN;
                         duckActor.State = EnumDuckState.LEFTFLY;
@@ -176,16 +220,16 @@ namespace WpfDuckHunt.Controllers
 
                     }
 
-                    if (duckActor.xPos < 0 || duckActor.yPos > 269)
+                    if (duckActor.xPos < 0 || duckActor.yPos > 270)
                     {
                         duckActor.FlyingDirection = EnumDuckFlyingDirection.UP;
                         duckActor.State = EnumDuckState.RIGHTFLY;
 
                     }
-                    if (duckActor.xPos < -1)
+                    if (duckActor.xPos < -1 || duckActor.yPos < 0)
                     { 
                         duckActor.FlyingDirection = EnumDuckFlyingDirection.DOWN;
-                        duckActor.State = EnumDuckState.RIGHTFLY;
+                        duckActor.State = EnumDuckState.LEFTFLY;
                     }
 
                 }
@@ -193,10 +237,29 @@ namespace WpfDuckHunt.Controllers
                 if(duckActor.State == EnumDuckState.DIE)
                 {
                     duckActor.animation_duration += delta;
-                    if (duckActor.animation_duration > 2.5)
+                    if (duckActor.animation_duration > 2)
                     {
                         duckActor.animation_duration = 0;
+                        duckActor.Frame = 0;
+                        duckActor.State = EnumDuckState.FALL;
+                    }
+                }
+
+                if (duckActor.State == EnumDuckState.FALL)
+                {
+                    duckActor.animation_duration += delta;
+                    duckActor.Frame += 8 * delta;
+
+                    if (duckActor.Frame > 2)
+                    {
+                        duckActor.Frame = 0;
+                    }
+                    if (duckActor.yPos>270)
+                    {
+                        
                         duckActor.State = EnumDuckState.NOTHING;
+                        duckActor.yPos = 270;
+                        generateDucks();
                     }
                 }
             }
@@ -210,14 +273,15 @@ namespace WpfDuckHunt.Controllers
                 double duckX1,duckX2,duckY1,duckY2;
                 duckX1 = duckActor.xPos - 25;
                 duckX2 = duckActor.xPos + 25;
-                duckY1 = duckActor.yPos + 60;
-                duckY2 = duckActor.yPos - 20 ;
-
-                if(duckY1 >= y && y >= duckY2 && x >= duckX1 && duckX2 >= x)
+                duckY1 = duckActor.yPos + 40;
+                duckY2 = duckActor.yPos + 60;
+                
+                if(duckY1 <= y && y <= duckY2 && x >= duckX1 && duckX2 >= x && duckActor.State != EnumDuckState.DIE && duckActor.State != EnumDuckState.FALL)
                 {
                     duckActor.State = EnumDuckState.DIE;
                     duckActor.Frame = 0;
                     game.score += duckActor.score;
+                    
 
                 }
 

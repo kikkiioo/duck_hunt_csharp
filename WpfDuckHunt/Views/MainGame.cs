@@ -65,14 +65,16 @@ namespace WpfDuckHunt.Views
             fly5 = getContent("duck/blackDuck/fly5.png");
             fly6 = getContent("duck/blackDuck/fly6.png");
             die1 = getContent("duck/blackDuck/die1.png");
-            die2 = getContent("duck/blackDuck/die1.png");
-            die3 = getContent("duck/blackDuck/die1.png");
+            die2 = getContent("duck/blackDuck/die2.png");
+            die3 = getContent("duck/blackDuck/die3.png");
             List<Texture2D> _textures_anim_rightFly_duck = new List<Texture2D> { fly1, fly2, fly3 };
             List<Texture2D> _textures_anim_leftFly_duck = new List<Texture2D> { fly4,fly5, fly6 };
-            List<Texture2D> _textures_anim_die_duck = new List<Texture2D> { die1, die2, die3 };
+            List<Texture2D> _textures_anim_die_duck = new List<Texture2D> { die1 };
+            List<Texture2D> _textures_anim_fall_duck = new List<Texture2D> { die2, die3 };
             _textures_by_player_state.Add(EnumDuckState.RIGHTFLY, _textures_anim_rightFly_duck);
             _textures_by_player_state.Add(EnumDuckState.LEFTFLY, _textures_anim_leftFly_duck);
             _textures_by_player_state.Add(EnumDuckState.DIE, _textures_anim_die_duck);
+            _textures_by_player_state.Add(EnumDuckState.FALL, _textures_anim_fall_duck);
 
             base.Initialize();
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -91,8 +93,6 @@ namespace WpfDuckHunt.Views
         {
 
             if (GameController.getGame().paused == false)
-
-
             {
                 delta = (float)time.ElapsedGameTime.TotalSeconds;
                 GameController.updateActors(delta);
@@ -112,21 +112,22 @@ namespace WpfDuckHunt.Views
                 _spriteBatch.Draw(background, new Vector2(0, 0), Color.White);
 
 
-                for (int i = 0; i < GameController.getGame().dogActors.Count; i++)
+                foreach(var dogActor in GameController.getGame().dogActors)
                 {
-                    if (GameController.getGame().dogActors[i].State == EnumDogState.NOTHING)
+                    if (dogActor.State == EnumDogState.NOTHING)
                     {
                         break;
                     }
-                    _spriteBatch.Draw(_textures_by_player_state[GameController.getGame().dogActors[i].State][(int)(GameController.getGame().dogActors[i].Frame)], new Vector2((float)GameController.getGame().dogActors[i].xPos, (float)GameController.getGame().dogActors[i].yPos), Color.White);
+                    _spriteBatch.Draw(_textures_by_player_state[dogActor.State][(int)(dogActor.Frame)], new Vector2((float)dogActor.xPos, (float)dogActor.yPos), Color.White);
                 }
-                for (int i = 0; i < GameController.getGame().duckActors.Count; i++)
+                foreach(var duckActor in GameController.getGame().duckActors)
                 {
-                    if (GameController.getGame().duckActors[i].State == EnumDuckState.NOTHING)
+                   
+                    if (duckActor.State == EnumDuckState.NOTHING)
                     {
                         break;
                     }
-                    _spriteBatch.Draw(_textures_by_player_state[GameController.getGame().duckActors[i].State][(int)(GameController.getGame().duckActors[i].Frame)], new Vector2((float)GameController.getGame().duckActors[i].xPos, (float)GameController.getGame().duckActors[i].yPos), Color.White);
+                    _spriteBatch.Draw(_textures_by_player_state[duckActor.State][(int)(duckActor.Frame)], new Vector2((float)duckActor.xPos, (float)duckActor.yPos), Color.White);
 
                 }
                 _spriteBatch.End();

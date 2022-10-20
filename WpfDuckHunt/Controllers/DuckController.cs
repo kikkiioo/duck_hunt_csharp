@@ -35,5 +35,10 @@ namespace WpfDuckHunt.Controllers
                 duck.yPos += 50 * delta;
             }
         }
+
+        public static void fall(Duck duck, float delta)
+        {
+            duck.yPos += 50 * delta;
+        }
     }
 }
