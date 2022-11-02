@@ -64,9 +64,7 @@ namespace WpfDuckHunt.Views
         {
             Point point;
             point = e.GetPosition(this);
-            uiButtonLoadGame.Content = GameController.getGame().duckActors[0].yPos.ToString();
-            uiButtonNewGame.Content = point.Y.ToString();
-
+            
             GameController.checkCollision(point.X,point.Y);
             ui_game_Score.Text = GameController.getScore().ToString();
 
