@@ -3,26 +3,53 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfDuckHunt" xmlns:views="clr-namespace:WpfDuckHunt.Views"
+        xmlns:local="clr-namespace:WpfDuckHunt" 
+        xmlns:views="clr-namespace:WpfDuckHunt.Views"
         mc:Ignorable="d"
         PreviewMouseLeftButtonDown="Window_MouseLeftButtonDown"
-   
-        Title="Duck Hunt" Height="540" Width="550">
+        Title="Duck Hunt" 
+        Height="540" 
+        Width="550">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="3" Background="#63afff">
-            <Button x:Name="uiButtonPauseGame" Click="uiButtonPauseGame_Click" Content="Pause Game" Height="40" Width="115" Background="#FF8DD700" FontFamily="Arial Black"/>
-            <Button x:Name="uiButtonNewGame" Click="uiButtonNewGame_Click" Content="New Game" Height="40" Width="115" Background="#FF8DD700" BorderBrush="#FF707070" FontFamily="Arial Black"/>
-            <Button x:Name="uiButtonSaveGame" Click="uiButtonSaveGame_Click" Content="Save Game" Height="40" Width="115" Background="#FF8DD700" FontFamily="Arial Black"/>
+        <StackPanel Orientation="Horizontal" 
+                    Grid.ColumnSpan="3" 
+                    Background="#63afff">
+            <Button 
+                    x:Name="uiButtonPauseGame" 
+                    Click="uiButtonPauseGame_Click" 
+                    Content="Pause Game" 
+                    Style="{DynamicResource ResourceKey=Button}"
+                    />
+            <Button 
+                    x:Name="uiButtonNewGame" 
+                    Click="uiButtonNewGame_Click" 
+                    Content="New Game" 
+                    Style="{DynamicResource ResourceKey=Button}"
+                    />
+            <Button 
+                    x:Name="uiButtonSaveGame" 
+                    Click="uiButtonSaveGame_Click" 
+                    Content="Save Game" 
+                    Style="{DynamicResource ResourceKey=Button}"
+                    />
 
-            <Button x:Name="uiButtonLoadGame" Click="uiButtonLoadGame_Click" Content="Load Game" Height="40" Width="115" Background="#FF8DD700" FontFamily="Arial Black"/>
+            <Button 
+                    x:Name="uiButtonLoadGame" 
+                    Click="uiButtonLoadGame_Click" 
+                    Content="Load Game" 
+                    Style="{DynamicResource ResourceKey=Button}"
+                    />
 
         </StackPanel>
         <views:MainGame Grid.Row="1" Grid.ColumnSpan="1" />
-        <TextBox x:Name="ui_game_Score" HorizontalAlignment="Left" Height="17" Margin="413,420,0,0" Grid.Row="1" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="106" Foreground="#FFDDDDDD" Background="Black" TextAlignment="Center" BorderBrush="Black"  SelectionBrush="Black" OpacityMask="Black" SelectionTextBrush="Black" FontFamily="Impact"/>
-        
+        <TextBox 
+            x:Name="ui_game_Score" 
+            Style="{DynamicResource ResourceKey=TextBoxScore}"
+            Text="0" 
+            />
     </Grid>
 </Window>
